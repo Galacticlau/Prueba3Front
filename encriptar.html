@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado de Texto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #520004;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #520004;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Cifrado de Texto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacionBarra" aria-controls="navegacionBarra" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navegacionBarra">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-section">
+            <h2>Cifrado de Texto</h2>
+            <form id="encryptionForm">
+                <div class="form-group">
+                    <label for="inputText">Texto a Cifrar:</label>
+                    <input type="text" id="inputText" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Cifrar</button>
+            </form>
+        </div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Sitio Web. Todos los derechos reservados.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidad</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Términos de Servicio</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Contacto</a></li>
+        </ul>
+    </footer>
+
+    <!-- Incluyendo la biblioteca CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script>
+        document.getElementById('encryptionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const texto = document.getElementById('inputText').value;
+            const textoCifrado = CryptoJS.MD5(texto).toString();
+
+            document.getElementById('result').innerHTML = `
+                <p>Texto original: ${texto}</p>
+                <p>Texto cifrado: ${textoCifrado}</p>
+            `;
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

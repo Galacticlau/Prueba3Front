@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Marca</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacionBarra" aria-controls="navegacionBarra" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navegacionBarra">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row" id="contenedorProductos">
+            <div class="col-md-4 mb-4">
+                <div class="card producto-card">
+                    <img src="polera1.png" class="card-img-top" alt="Polera 1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Camiseta Vía Lactea</h5>
+                        <p class="card-text">$15000</p>
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card producto-card">
+                    <img src="polera2.png" class="card-img-top" alt="Polera 2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Camiseta Samurai</h5>
+                        <p class="card-text">$15000</p>
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card producto-card">
+                    <img src="polera4.png" class="card-img-top" alt="Polera 3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Camiseta Olas</h5>
+                        <p class="card-text">$15000</p>
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button id="botonCargarMas" class="btn btn-outline-primary">Ver más</button>
+            <button id="botonVerMenos" class="btn btn-outline-secondary" style="display: none;">Ver menos</button>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Prueba Claudia Videla. Todos los derechos reservados.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidad</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Términos de Servicio</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Contacto</a></li>
+        </ul>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('botonCargarMas').addEventListener('click', function() {
+            const contenedorProductos = document.getElementById('contenedorProductos');
+            const masProductos = `
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera3.png" class="card-img-top" alt="Polera 4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Camiseta Rosa de los vientos</h5>
+                            <p class="card-text">$15000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera.png" class="card-img-top" alt="Polera 5">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Producto 5</h5>
+                            <p class="card-text">$500</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera.png" class="card-img-top" alt="Polera 6">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Producto 6</h5>
+                            <p class="card-text">$600</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera.png" class="card-img-top" alt="Producto 7">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Producto 7</h5>
+                            <p class="card-text">$700</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera.png" class="card-img-top" alt="Producto 8">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Producto 8</h5>
+                            <p class="card-text">$800</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card producto-card">
+                        <img src="polera.png" class="card-img-top" alt="Producto 9">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Producto 9</h5>
+                            <p class="card-text">$900</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>`;
+            contenedorProductos.insertAdjacentHTML('beforeend', masProductos);
+            document.getElementById('botonCargarMas').style.display = 'none'; 
+            document.getElementById('botonVerMenos').style.display = 'block';  
+        });
+
+        document.getElementById('botonVerMenos').addEventListener('click', function() {
+            const contenedorProductos = document.getElementById('contenedorProductos');
+            while (contenedorProductos.children.length > 3) {
+                contenedorProductos.removeChild(contenedorProductos.lastChild);
+            }
+            document.getElementById('botonCargarMas').style.display = 'block'; 
+            document.getElementById('botonVerMenos').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

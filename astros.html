@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen Astronómica del Día</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+    
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Clima</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacionBarra" aria-controls="navegacionBarra" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navegacionBarra">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+        </div>
+    </nav>
+    <h1>Imagen Astronómica del Día</h1>
+    <div id="astrocontenedor">
+        <img id="imagenastro" src="" alt="Imagen astronómica del día">
+        <div id="texto-astro">
+            <h2 id="title"></h2>
+            <p id="explanation"></p>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Prueba Claudia Videla. Todos los derechos reservados.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidad</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Términos de Servicio</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Contacto</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKeyNASA = '2cCNXWhVQx2yrpzXTcgglLof1dHY1VeTpd0hKg69'; 
+            const apiKeyMyMemory = '6425344344411acb3a28';
+            const userEmail = 'cvidelasandoval@gmail.com';
+            const urlNASA = `https://api.nasa.gov/planetary/apod?api_key=${apiKeyNASA}`;
+
+            fetch(urlNASA)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.media_type === 'image') {
+                        document.getElementById('imagenastro').style.display = 'block';
+                        document.getElementById('imagenastro').src = data.url;
+                        document.getElementById('imagenastro').alt = data.title;
+                    } else {
+                        document.getElementById('imagenastro').style.display = 'none';
+                    }
+
+                    translateText(data.title, 'es', apiKeyMyMemory, userEmail, function(translatedTitle) {
+                        document.getElementById('title').textContent = translatedTitle;
+                    });
+
+                    translateText(data.explanation, 'es', apiKeyMyMemory, userEmail, function(translatedExplanation) {
+                        document.getElementById('explanation').textContent = translatedExplanation;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function translateText(text, targetLang, apiKey, userEmail, callback) {
+            const translateUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|${targetLang}&de=${userEmail}&key=${apiKey}`;
+            fetch(translateUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.responseData && data.responseData.translatedText) {
+                        callback(data.responseData.translatedText);
+                    } else {
+                        callback(text);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error translating text:', error);
+                    callback(text);
+                });
+        }
+    </script>
+</body>
+</html>
+

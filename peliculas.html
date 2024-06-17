@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas Populares</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Películas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navegacionBarra" aria-controls="navegacionBarra" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navegacionBarra">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Películas Populares</a>
+                </li>                           
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Servicios</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-center">Películas Populares 2024</h1>
+        <div id="movies-container" class="row"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-titulo" id="movieModalLabel">Título de la Película</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="movieModalBody">
+                    <!-- El contenido se actualizará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Películas. Todos los derechos reservados.</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidad</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Términos de Servicio</a></li>
+            <li class="list-inline-item"><a href="#" class="text-white">Contacto</a></li>
+        </ul>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKey = 'cffa3019fd8cc27181c48b258a746e6e';
+            const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES&page=1`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const moviesContainer = document.getElementById('movies-container');
+                    data.results.forEach(movie => {
+                        const movieCol = document.createElement('div');
+                        movieCol.className = 'col-md-4 mb-4';
+                        movieCol.innerHTML = `
+                            <div class="card movie-card h-100">
+                                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top" alt="${movie.title}">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">${movie.title}</h5>
+                                    <p class="card-text movie-overview">${movie.overview.substring(0, 100)}${movie.overview.length > 100 ? '...' : ''}</p>
+                                    <p class="card-text mt-auto"><strong>Fecha de lanzamiento:</strong> ${movie.release_date}</p>
+                                    <p class="card-text"><strong>Puntuación:</strong> ${movie.vote_average}</p>
+                                    ${movie.overview.length > 100 ? `<button class="btn btn-primary mt-auto ver-mas" data-title="${movie.title}" data-overview="${movie.overview.replace(/"/g, '&quot;')}" data-img="https://image.tmdb.org/t/p/w500${movie.poster_path}">Ver más</button>` : ''}
+                                </div>
+                            </div>
+                        `;
+                        moviesContainer.appendChild(movieCol);
+                    });
+
+                    document.querySelectorAll('.ver-mas').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const title = this.getAttribute('data-title');
+                            const overview = this.getAttribute('data-overview');
+                            const img = this.getAttribute('data-img');
+                            document.getElementById('movieModalLabel').innerText = title;
+                            document.getElementById('movieModalBody').innerHTML = `
+                                <div class="text-center">
+                                    <img src="${img}" class="img-fluid mb-3" alt="${title}">
+                                    <p style="color: black;">${overview}</p>
+                                </div>
+                            `;
+                            $('#movieModal').modal('show');
+                        });
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
+
+            
