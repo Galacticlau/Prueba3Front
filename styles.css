@@ -1,0 +1,169 @@
+body {
+    background: radial-gradient(at top, #2fcbe0, #520004);
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #333333 !important;
+}
+
+.container-fluid {
+    flex: 1;
+}
+
+.zapatilla {
+    animation: zapatilla_animacion 4s ease-in-out infinite;
+    width: 400px; /
+}
+
+@keyframes zapatilla_animacion {
+    0% { transform: translateY(-10%); }
+    50% { transform: translateY(0%); }
+    100% { transform: translateY(-10%); }
+}
+
+footer {
+    background-color: #520004;
+    color: white;
+    padding: 1rem 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+
+.producto-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.producto-card:hover {
+    transform: scale(1.05);
+}
+
+.producto-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.producto-card .card-body {
+    padding: 20px;
+}
+
+.producto-card .card-title {
+    color: #520004;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.producto-card .card-text {
+    font-size: 2rem;
+    color: #520004;
+}
+
+.producto-card .btn {
+    background-color: #520004;
+    border: none;
+}
+
+.producto-card .btn:hover {
+    background-color: #520004;
+}
+
+
+.movie-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.movie-card .card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card .card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.movie-card .card-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.movie-card .btn {
+    background-color: #520004;
+    border: none;
+    margin-top: auto;
+}
+
+.movie-card .btn:hover {
+    background-color: #520004;
+}
+
+.modal-body p {
+    color: black;
+}
+
+.modal-body img {
+    width: 40%;
+}
+
+.modal-titulo {
+    color: black;
+}
+
+#weather-info p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#astrocontenedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+}
+
+#imagenastro {
+    max-width: 100%;
+    max-height: 80vh;
+    border: 2px solid black;
+    margin-right: 20px;
+}
+
+#texto-astro {
+    max-width: 40%;
+    text-align: justify;
+}
